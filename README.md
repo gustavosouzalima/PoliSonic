@@ -12,7 +12,7 @@ Saiba mais sobre o SonoPolifásico [Wikipedia](http://pt.wikipedia.org/wiki/Sono
 Dependências
 --------------
 
-O PoliSonic é uma aplicação do web2py e para rodá-lo você precisará de:
+Para rodar o PoliSonic você precisará de:
 
 - Firefox, Chrome e etc.
 
