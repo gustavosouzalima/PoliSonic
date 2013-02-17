@@ -3,8 +3,9 @@ PoliSonic
 
 O **PoliSonic** pretende ser um facilitador na hora de calcular seus horários de cochilos no sono polifásico.
 
-Vejo o [https://googledrive.com/host/0B7SMjCRiyKvLc190cEU1RmNtUjQ/index.html](https://googledrive.com/host/0B7SMjCRiyKvLc190cEU1RmNtUjQ/index.html " Demo Online")
-Saiba mais sobre o SonoPolifásico [http://pt.wikipedia.org/wiki/Sono_polif%C3%A1sico](http://pt.wikipedia.org/wiki/Sono_polif%C3%A1sico " PoliSonic")
+Vejo o [Demo Online](https://googledrive.com/host/0B7SMjCRiyKvLc190cEU1RmNtUjQ/index.html "Demo Online")
+  
+Saiba mais sobre o SonoPolifásico [Wikipedia](http://pt.wikipedia.org/wiki/Sono_polif%C3%A1sico "Wikipedia")
 
 ---------------------------------------
 
