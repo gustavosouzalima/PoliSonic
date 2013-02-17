@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <title>PoliSonic</title>
+     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+        <h1>Horário Polifásico EveryMan</h1>
+        <div class="row-fluid">
+          <div class="span3">
+            <label for="hora">Hora:</label>
+            <select name="hora"  id="hora">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="00" selected>00</option>
+            </select>
+          </div><!-- span6 -->
+          <div class="span3">
+            <label for="hora">Minutos:</label>
+            <select name="minutos"  id="minutos">
+                <option value="00" selected>00</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="45">45</option>
+            </select>
+          </div><!-- span6 -->
+        </div><!-- row-fluid -->
+        <div class="row-fluid">
+            <label for="tempoCochilo">Tempo do Cochilo(Minutos)</label>
+            <select name="tempoCochilo"  id="tempoCochilo">
+                <option value="20" selected>20</option>
+                <option value="30">30</option>
+            </select>
+            <br>
+            <button id="calcular" class="btn btn-primary">Calcular</button>
+        </div><!-- row-fluid -->
+    </div>
+
+    <!-- Javascript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/code.js"></script>
+  </body>
+</html>
