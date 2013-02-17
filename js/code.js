@@ -11,22 +11,19 @@ $("#calcular").click(function(){
 function calculaSoneca(hora,minutos,tempoCochilo){
 
 	var	tempoCore = hora + 3,
-		coreDorme = formataHora(hora) + ":" + formataHora(minutos);
+		coreDorme = formataHora(hora) + ":" + formataMinutos(minutos);
 	if(tempoCore >=24){
 		tempoCore = tempoCore - 24;
 	}
-	var	coreAcorda = formataHora(tempoCore) + ":" + formataHora(minutos);
+	var	coreAcorda = formataHora(tempoCore) + ":" + formataMinutos(minutos);
 
 	for (var i=1;i<=3;i++)	{ 
 		switch (i){
 			case 1:
 				var	cochilo1Hora = (tempoCore + 5),
 					cochilo1Minutos = 0;
-				
-				if(cochilo1Hora >=24){
-					cochilo1Hora = cochilo1Hora - 24;
-				}
-				var	cochilo1Dorme = formataHora(cochilo1Hora) + ":" + formataHora(minutos);
+
+				var	cochilo1Dorme = formataHora(cochilo1Hora) + ":" + formataMinutos(minutos);
 
 				if(tempoCochilo === 20){
 					if(minutos === 40){
@@ -56,17 +53,14 @@ function calculaSoneca(hora,minutos,tempoCochilo){
 					}
 				}
 
-				var	cochilo1Acorda = formataHora(cochilo1Hora) + ":" + formataHora(cochilo1Minutos);
+				var	cochilo1Acorda = formataHora(cochilo1Hora) + ":" + formataMinutos(cochilo1Minutos);
 
 			  break;
 			case 2:
 				var	cochilo2Hora = cochilo1Hora + 5,
 					cochilo2Minutos = 0;
 
-				if(cochilo2Hora >=24){
-					cochilo2Hora = cochilo2Hora - 24;
-				}
-				var	cochilo2Dorme = formataHora(cochilo2Hora) + ":" + formataHora(cochilo1Minutos);
+				var	cochilo2Dorme = formataHora(cochilo2Hora) + ":" + formataMinutos(cochilo1Minutos);
 
 				if(tempoCochilo === 20){
 					if(cochilo1Minutos === 40){
@@ -95,16 +89,13 @@ function calculaSoneca(hora,minutos,tempoCochilo){
 						cochilo2Minutos = cochilo1Minutos+tempoCochilo;
 					}
 				}
-				var	cochilo2Acorda = formataHora(cochilo2Hora) + ":" + formataHora(cochilo2Minutos);
+				var	cochilo2Acorda = formataHora(cochilo2Hora) + ":" + formataMinutos(cochilo2Minutos);
 			  break;
 			case 3:
 				var	cochilo3Hora = cochilo2Hora + 5,
 					cochilo3Minutos = 0;
 
-				if(cochilo3Hora >=24){
-					cochilo3Hora = cochilo3Hora - 24;
-				}
-				var	cochilo3Dorme = formataHora(cochilo3Hora) + ":" + formataHora(cochilo2Minutos);
+				var	cochilo3Dorme = formataHora(cochilo3Hora) + ":" + formataMinutos(cochilo2Minutos);
 
 				if(tempoCochilo === 20){
 					if(cochilo2Minutos === 40){
@@ -133,7 +124,7 @@ function calculaSoneca(hora,minutos,tempoCochilo){
 						cochilo3Minutos = cochilo2Minutos+tempoCochilo;
 					}
 				}
-				var	cochilo3Acorda = formataHora(cochilo3Hora) + ":" + formataHora(cochilo3Minutos);
+				var	cochilo3Acorda = formataHora(cochilo3Hora) + ":" + formataMinutos(cochilo3Minutos);
 			  break;
 		}
 	}
@@ -151,6 +142,16 @@ function calculaSoneca(hora,minutos,tempoCochilo){
 }
 
 function formataHora(tempo){
+	if(tempo >=24){
+		tempo = tempo - 24;
+	}
+	if(tempo.toString().length < 2 ){
+		tempo = "0" + tempo
+	}
+	return tempo
+}
+
+function formataMinutos(tempo){
 	if(tempo.toString().length < 2 ){
 		tempo = "0" + tempo
 	}
