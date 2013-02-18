@@ -5,7 +5,7 @@ $("#calcular").click(function(){
 		soneca = calculaSoneca(hora,minutos,tempoCochilo);
 
 	$("table").remove();
-	$(".container").append('<table class="table table-striped span7 offset2"><thead><tr><th>Soneca</th><th>Dorme</th><th>Acorda</th></tr></thead><tbody><tr><td>CoreSleep</td><td>'+soneca["coreDorme"]+'</td><td>'+soneca["coreAcorda"]+'</td></tr><tr><td>1ª Cochilo</td><td>'+soneca["cochilo1Dorme"]+'</td><td>'+soneca["cochilo1Acorda"]+'</td></tr><td>2ª Cochilo</td><td>'+soneca["cochilo2Dorme"]+'</td><td>'+soneca["cochilo2Acorda"]+'</td></tr><td>3ª Cochilo</td><td>'+soneca["cochilo3Dorme"]+'</td><td>'+soneca["cochilo3Acorda"]+'</td></tr></tbody></table>');
+	$("#calculadora").append('<table class="table table-striped span6 offset1"><thead><tr><th>Soneca</th><th>Dorme</th><th>Acorda</th></tr></thead><tbody><tr><td>CoreSleep</td><td>'+soneca["coreDorme"]+'</td><td>'+soneca["coreAcorda"]+'</td></tr><tr><td>1ª Cochilo</td><td>'+soneca["cochilo1Dorme"]+'</td><td>'+soneca["cochilo1Acorda"]+'</td></tr><td>2ª Cochilo</td><td>'+soneca["cochilo2Dorme"]+'</td><td>'+soneca["cochilo2Acorda"]+'</td></tr><td>3ª Cochilo</td><td>'+soneca["cochilo3Dorme"]+'</td><td>'+soneca["cochilo3Acorda"]+'</td></tr></tbody></table>');
 });
 
 function calculaSoneca(hora,minutos,tempoCochilo){
