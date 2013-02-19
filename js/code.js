@@ -1,144 +1,102 @@
 $("#calcular").click(function(){
-	var hora = parseInt($('#hora :selected').text()),
-		minutos = parseInt($('#minutos :selected').text()),
+	var m_hora = parseInt($('#hora :selected').text()),
+		m_core = parseInt($('#minutos :selected').text()),
 		tempoCochilo = parseInt($('#tempoCochilo :selected').text()),
-		soneca = calculaSoneca(hora,minutos,tempoCochilo);
+		soneca = calcula(m_hora,m_core,tempoCochilo);
 
 	$("table").remove();
-	$("#calculadora").append('<table class="table table-striped span6 offset1"><thead><tr><th>Soneca</th><th>Dorme</th><th>Acorda</th></tr></thead><tbody><tr><td>CoreSleep</td><td>'+soneca["coreDorme"]+'</td><td>'+soneca["coreAcorda"]+'</td></tr><tr><td>1ª Cochilo</td><td>'+soneca["cochilo1Dorme"]+'</td><td>'+soneca["cochilo1Acorda"]+'</td></tr><td>2ª Cochilo</td><td>'+soneca["cochilo2Dorme"]+'</td><td>'+soneca["cochilo2Acorda"]+'</td></tr><td>3ª Cochilo</td><td>'+soneca["cochilo3Dorme"]+'</td><td>'+soneca["cochilo3Acorda"]+'</td></tr></tbody></table>');
+	$("#calculadora").append('<table class="table table-striped span6 offset1"><thead><tr><th>Soneca</th><th>Dorme</th><th>Acorda</th></tr></thead><tbody><tr><td>CoreSleep</td><td>'+soneca["dormeCore"]+'</td><td>'+soneca["acordaCore"]+'</td></tr><tr><td>1ª Cochilo</td><td>'+soneca["dormePrimeiroCochilo"]+'</td><td>'+soneca["acordaPrimeiroCochilo"]+'</td></tr><td>2ª Cochilo</td><td>'+soneca["dormeSegundoCochilo"]+'</td><td>'+soneca["acordaSegundoCochilo"]+'</td></tr><td>3ª Cochilo</td><td>'+soneca["dormeTerceiroCochilo"]+'</td><td>'+soneca["acordaTerceiroCochilo"]+'</td></tr></tbody></table>');
 });
 
-function calculaSoneca(hora,minutos,tempoCochilo){
+function calcula(m_hora,m_core,tempoCochilo){
 
-	var	tempoCore = hora + 3,
-		coreDorme = formataHora(hora) + ":" + formataMinutos(minutos);
+	var	tempoCore = m_hora + 3;
 	if(tempoCore >=24){
 		tempoCore = tempoCore - 24;
 	}
-	var	coreAcorda = formataHora(tempoCore) + ":" + formataMinutos(minutos);
+	var dormeCore = formataHora(m_hora) + ":" + formataMinutos(m_core),
+		acordaCore = formataHora(tempoCore) + ":" + formataMinutos(m_core);
 
 	for (var i=1;i<=3;i++)	{ 
 		switch (i){
 			case 1:
-				var	cochilo1Hora = (tempoCore + 5),
-					cochilo1Minutos = 0;
-
-				var	cochilo1Dorme = formataHora(cochilo1Hora) + ":" + formataMinutos(minutos);
-
-				if(tempoCochilo === 20){
-					if(minutos === 40){
-						cochilo1Minutos = 0;
-						cochilo1Hora += 1;
-					}else if(minutos === 45){
-						cochilo1Minutos = 5;
-						cochilo1Hora += 1;
-					}else if(minutos === 50){
-						cochilo1Minutos = 10;
-						cochilo1Hora += 1;
-					}else if(minutos === 55){
-						cochilo1Minutos = 15;
-						cochilo1Hora += 1;
-					}else {
-						cochilo1Minutos = minutos+tempoCochilo;
-					}
-				}else if (tempoCochilo === 30){
-					if(minutos === 30){
-						cochilo1Minutos = 0;
-						cochilo1Hora = 1;
-					}else if(minutos === 45){
-						cochilo1Minutos = 15;
-						cochilo1Hora += 1;
-					}else {
-						cochilo1Minutos = minutos+tempoCochilo;
-					}
-				}
-
-				var	cochilo1Acorda = formataHora(cochilo1Hora) + ":" + formataMinutos(cochilo1Minutos);
-
+				var	h_anterior = tempoCore,
+					h_atual = h_anterior + 5,
+					m_anterior = m_core,
+					primeiroCochilo = calculaCochilo(h_atual,h_anterior,m_anterior,tempoCochilo),
+					dormePrimeiroCochilo = primeiroCochilo["cochiloDorme"],
+					acordaPrimeiroCochilo = primeiroCochilo["cochiloAcorda"];
 			  break;
 			case 2:
-				var	cochilo2Hora = cochilo1Hora + 5,
-					cochilo2Minutos = 0;
-
-				var	cochilo2Dorme = formataHora(cochilo2Hora) + ":" + formataMinutos(cochilo1Minutos);
-
-				if(tempoCochilo === 20){
-					if(cochilo1Minutos === 40){
-						cochilo2Minutos = 0;
-						cochilo2Hora += 1;
-					}else if(cochilo1Minutos === 45){
-						cochilo2Minutos = 5;
-						cochilo2Hora += 1;
-					}else if(cochilo1Minutos === 50){
-						cochilo2Minutos = 10;
-						cochilo2Hora += 1;
-					}else if(cochilo1Minutos === 55){
-						cochilo2Minutos = 15;
-						cochilo2Hora += 1;
-					}else {
-						cochilo2Minutos = cochilo1Minutos+tempoCochilo;
-					}
-				}else if (tempoCochilo === 30){
-					if(cochilo1Minutos === 30){
-						cochilo2Minutos = 0;
-						cochilo2Hora += 1;
-					}else if(cochilo1Minutos === 45){
-						cochilo2Minutos = 15;
-						cochilo2Hora += 1;
-					}else {
-						cochilo2Minutos = cochilo1Minutos+tempoCochilo;
-					}
-				}
-				var	cochilo2Acorda = formataHora(cochilo2Hora) + ":" + formataMinutos(cochilo2Minutos);
+				var	h_anterior = primeiroCochilo["h_atual"],
+					h_atual = h_anterior + 5,
+					m_anterior = primeiroCochilo["m_atual"],
+					segundoCochilo = calculaCochilo(h_atual,h_anterior,m_anterior,tempoCochilo),
+					dormeSegundoCochilo = segundoCochilo["cochiloDorme"],
+					acordaSegundoCochilo = segundoCochilo["cochiloAcorda"];
 			  break;
 			case 3:
-				var	cochilo3Hora = cochilo2Hora + 5,
-					cochilo3Minutos = 0;
-
-				var	cochilo3Dorme = formataHora(cochilo3Hora) + ":" + formataMinutos(cochilo2Minutos);
-
-				if(tempoCochilo === 20){
-					if(cochilo2Minutos === 40){
-						cochilo3Minutos = 0;
-						cochilo3Hora += 1;
-					}else if(cochilo2Minutos === 45){
-						cochilo3Minutos = 5;
-						cochilo3Hora += 1;
-					}else if(cochilo2Minutos === 50){
-						cochilo3Minutos = 10;
-						cochilo3Hora += 1;
-					}else if(cochilo2Minutos === 55){
-						cochilo3Minutos = 15;
-						cochilo3Hora += 1;
-					}else {
-						cochilo3Minutos = cochilo2Minutos+tempoCochilo;
-					}
-				}else if (tempoCochilo === 30){
-					if(cochilo2Minutos === 30){
-						cochilo3Minutos = 0;
-						cochilo3Hora += 1;
-					}else if(cochilo2Minutos === 45){
-						cochilo3Minutos = 15;
-						cochilo3Hora += 1;
-					}else {
-						cochilo3Minutos = cochilo2Minutos+tempoCochilo;
-					}
-				}
-				var	cochilo3Acorda = formataHora(cochilo3Hora) + ":" + formataMinutos(cochilo3Minutos);
+				var	h_anterior = segundoCochilo["h_atual"],
+					h_atual = h_anterior + 5,
+					m_anterior = segundoCochilo["m_atual"],
+					terceiroCochilo = calculaCochilo(h_atual,h_anterior,m_anterior,tempoCochilo),
+					dormeTerceiroCochilo = terceiroCochilo["cochiloDorme"],
+					acordaTerceiroCochilo = terceiroCochilo["cochiloAcorda"];
 			  break;
 		}
 	}
 
 	return {
-		"coreDorme":coreDorme,
-		"coreAcorda":coreAcorda,
-		"cochilo1Dorme":cochilo1Dorme,
-		"cochilo1Acorda":cochilo1Acorda,
-		"cochilo2Dorme":cochilo2Dorme,
-		"cochilo2Acorda":cochilo2Acorda,
-		"cochilo3Dorme":cochilo3Dorme,
-		"cochilo3Acorda":cochilo3Acorda,
+		"dormeCore":dormeCore,
+		"acordaCore":acordaCore,
+		"dormePrimeiroCochilo":dormePrimeiroCochilo,
+		"acordaPrimeiroCochilo":acordaPrimeiroCochilo,
+		"dormeSegundoCochilo":dormeSegundoCochilo,
+		"acordaSegundoCochilo":acordaSegundoCochilo,
+		"dormeTerceiroCochilo":dormeTerceiroCochilo,
+		"acordaTerceiroCochilo":acordaTerceiroCochilo,
 	}
+}
+
+function calculaCochilo(h_atual,h_anterior,m_anterior,tempoCochilo){
+
+	var	m_atual = 0,
+		cochiloDorme = formataHora(h_atual) + ":" + formataMinutos(m_anterior);
+
+	if(tempoCochilo === 20){
+		if(m_anterior === 40){
+			h_atual += 1;
+		}else if(m_anterior === 45){
+			m_atual = 5;
+			h_atual += 1;
+		}else if(m_anterior === 50){
+			m_atual = 10;
+			h_atual += 1;
+		}else if(m_anterior === 55){
+			m_atual = 15;
+			h_atual += 1;
+		}else {
+			m_atual = m_anterior+tempoCochilo;
+		}
+	}else if (tempoCochilo === 30){
+		if(m_anterior === 30){
+			m_atual = 0;
+			h_atual += 1;
+		}else if(m_anterior === 45){
+			m_atual = 15;
+			h_atual += 1;
+		}else {
+			m_atual = m_anterior+tempoCochilo;
+		}
+	}
+	var	cochiloAcorda = formataHora(h_atual) + ":" + formataMinutos(m_atual);
+
+	return {
+		"h_atual":h_atual,
+		"m_atual":m_atual,
+		"cochiloAcorda":cochiloAcorda,
+		"cochiloDorme":cochiloDorme
+	} 
 }
 
 function formataHora(tempo){
