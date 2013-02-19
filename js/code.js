@@ -1,8 +1,20 @@
+$("select#tipoCochilo").change(function(){
+	var tipoCochilo = $(this).val();
+
+	if(tipoCochilo === "Everyman") {
+		$("select#tempoCochilo").html('<option value="20" selected>20</option><option value="30">30</option>')
+	}else if(tipoCochilo === "Uberman") {
+		$("select#tempoCochilo").html('<option value="20" selected>20</option>')
+	}else if(tipoCochilo === "Dymaxion") {
+		$("select#tempoCochilo").html('<option value="30" selected>30</option>')
+	}
+});
+
 $("#calcular").click(function(){
-	var h_inicial = parseInt($('#hora :selected').text()),
-		m_inicial = parseInt($('#minutos :selected').text()),
-		tipoCochilo = $('#tipoCochilo :selected').text(),
-		m_tempoCochilo = parseInt($('#tempoCochilo :selected').text()),
+	var h_inicial = parseInt($('#hora :selected').val()),
+		m_inicial = parseInt($('#minutos :selected').val()),
+		tipoCochilo = $('#tipoCochilo :selected').val(),
+		m_tempoCochilo = parseInt($('#tempoCochilo :selected').val()),
 		soneca = "";
 
 	$("table").remove();
@@ -55,6 +67,7 @@ function calculaEveryman(h_inicial,m_inicial,m_tempoCochilo){
 			  break;
 		}
 	}
+
 	$("#horarios").append("<small>*O primeiro cochilo do Everyman é o CoreSleep</small>");
 	$("#calculadora").append('\
 		<table class="table table-striped span6 offset1">\
@@ -141,6 +154,7 @@ function calculaUberman(h_inicial,m_inicial,m_tempoCochilo){
 		}
 	}
 
+	$("#horarios").append("<small>*6 Cochilos de 20 minutos a cada 4 horas.</small>");
 	$("#calculadora").append('\
 		<table class="table table-striped span6 offset1">\
 			<thead>\
@@ -187,7 +201,8 @@ function calculaUberman(h_inicial,m_inicial,m_tempoCochilo){
 
 
 function calculaDymaxion(h_inicial,m_inicial,m_tempoCochilo){
-	var h_intervalo_soneca = 6;
+	// intervalo eh de 5 horas e meia, adiciono 30 minutos no m_inicial
+	var h_intervalo_soneca = 5;
 
 	for (var i=1;i<=4;i++)	{ 
 		switch (i){
@@ -200,21 +215,21 @@ function calculaDymaxion(h_inicial,m_inicial,m_tempoCochilo){
 			  break;
 			case 2:
 				var	h_dormir = primeiroCochilo["h_acordar"] + h_intervalo_soneca,
-					m_dormir = primeiroCochilo["m_acordar"],
+					m_dormir = primeiroCochilo["m_acordar"] + 30,
 					segundoCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
 					dormeSegundoCochilo = segundoCochilo["cochiloDorme"],
 					acordaSegundoCochilo = segundoCochilo["cochiloAcorda"];
 			  break;
 			case 3:
 				var	h_dormir = segundoCochilo["h_acordar"] + h_intervalo_soneca,
-					m_dormir = segundoCochilo["m_acordar"],
+					m_dormir = segundoCochilo["m_acordar"] + 30,
 					terceiroCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
 					dormeTerceiroCochilo = terceiroCochilo["cochiloDorme"],
 					acordaTerceiroCochilo = terceiroCochilo["cochiloAcorda"];
 			  break;
 			case 4:
 				var	h_dormir = terceiroCochilo["h_acordar"] + h_intervalo_soneca,
-					m_dormir = terceiroCochilo["m_acordar"],
+					m_dormir = terceiroCochilo["m_acordar"] + 30,
 					quartoCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
 					dormeQuartoCochilo = quartoCochilo["cochiloDorme"],
 					acordaQuartoCochilo = quartoCochilo["cochiloAcorda"];
@@ -222,6 +237,7 @@ function calculaDymaxion(h_inicial,m_inicial,m_tempoCochilo){
 		}
 	}
 
+	$("#horarios").append("<small>*4 Cochilos de 20 minutos a cada 5 horas e 30 minutos.</small>");
 	$("#calculadora").append('\
 		<table class="table table-striped span6 offset1">\
 			<thead>\
@@ -283,7 +299,12 @@ function calculaCochilo(h_dormir,m_dormir,m_tempoCochilo){
 			h_acordar = h_dormir;
 		}
 	}else if (m_tempoCochilo === 30){
-		if(m_dormir === 30){
+		if(m_dormir === 60){
+			h_dormir += 1;
+			m_dormir = 0;
+			m_acordar = 30;
+			h_acordar = h_dormir;
+		}else if(m_dormir === 30){
 			m_acordar = 0;
 			h_acordar = h_dormir + 1;
 		}else if(m_dormir === 45){
