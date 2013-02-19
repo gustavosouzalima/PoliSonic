@@ -2,10 +2,10 @@ html{
     font-family:Helvetica,Arial Tahoma;
     font-size:62.5%;
     line-height:16px;
-    background:#000;
     font-weight:300;
 }
 body{
+    background:#000;
     font-size:1.8em;
     line-height:1.4em;
     color:#333022;
@@ -191,7 +191,7 @@ header.content .trees-front .scene .smoke {
     height: 310px;
     position: absolute;
     left: 55px;
-    top: 206px;
+    top: 110px;
     z-index: 4;
 }
 .sleep{
@@ -214,7 +214,7 @@ header.content .trees-front .scene .pulse {
 }
 header.home .tree-left,
 header.content .tree-left {
-    background: url(../img/tree-left.png) right top no-repeat,url(../img/dormir_saco.png) 10% 100% no-repeat;
+    background: url(../img/tree-left.png) right top no-repeat,url(../img/dormir_saco.png) 10% 81% no-repeat;
     position: absolute;
     left: 0;
     width: 35%;
@@ -276,14 +276,10 @@ header.content .stroke .title h2 {
     line-height: 20px;
     font-size: 20px;
     text-shadow: 0px 1px 1px rgba(0,0,0,0.1);
+    position: relative;
+    bottom: 16px;
 }
-header.home .stroke .title h2 span,
-header.content .stroke .title h2 span {
-    display: block;
-    font-weight: 500;
-    padding-top: 5px;
-}
-header.home { height: 700px }
+header.home { height: 600px }
 header.home .trees-front { background: url(../img/trees-front.png) 64% bottom repeat-x,url(../img/sun.png) 10% top no-repeat }
 header.home .trees-back {
     width: 100%;
@@ -381,14 +377,33 @@ screen and (        min-device-pixel-ratio:0) and (max-height:700px)
 }
 
 .container {
-    width: 800px;
+    width: 600px;
 }
 
 #calculadora {
-    background: rgba(170, 231, 216, 0.57);
+    font-size: 0.8em;
+    background: rgba(165, 224, 247, 0.59);
     position: absolute;
-    top: 160px;
+    top: 140px;
     left: 0px;
     right: 0px;
     z-index: 9999;
+    border: solid rgba(31, 35, 46, 0.25) 2px;
+}
+
+#calculadora .offset1 {
+    margin-left: 45px;
+}
+
+#calculadora select, #calculadora label {
+    font-size: 0.8em;
+}
+
+#calculadora .table th, .table td {
+    background-color: rgba(255, 255, 255, 0.59);
+}
+
+footer p {
+    color: #fff;
+    padding: 15px 20px 0 20px;
 }

@@ -30,6 +30,11 @@ $("#calcular").click(function(){
 
 });
 
+$("#limpar").click(function(){
+	$("table").remove();
+	$("small").remove();
+});
+
 
 function calculaEveryman(h_inicial,m_inicial,m_tempoCochilo){
 	var h_intervalo_soneca = 5;
@@ -70,7 +75,7 @@ function calculaEveryman(h_inicial,m_inicial,m_tempoCochilo){
 
 	$("#horarios").append("<small>*O primeiro cochilo do Everyman é o CoreSleep</small>");
 	$("#calculadora").append('\
-		<table class="table table-striped span6 offset1">\
+		<table class="table table-condensed span5 offset1">\
 			<thead>\
 				<tr>\
 					<th>Soneca</th>\
@@ -156,7 +161,7 @@ function calculaUberman(h_inicial,m_inicial,m_tempoCochilo){
 
 	$("#horarios").append("<small>*6 Cochilos de 20 minutos a cada 4 horas.</small>");
 	$("#calculadora").append('\
-		<table class="table table-striped span6 offset1">\
+		<table class="table table-condensed span5 offset1">\
 			<thead>\
 				<tr>\
 					<th>Soneca</th>\
@@ -239,7 +244,7 @@ function calculaDymaxion(h_inicial,m_inicial,m_tempoCochilo){
 
 	$("#horarios").append("<small>*4 Cochilos de 20 minutos a cada 5 horas e 30 minutos.</small>");
 	$("#calculadora").append('\
-		<table class="table table-striped span6 offset1">\
+		<table class="table table-condensed span5 offset1">\
 			<thead>\
 				<tr>\
 					<th>Soneca</th>\

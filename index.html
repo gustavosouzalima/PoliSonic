@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <title>PoliSonic</title>
-     <meta charset="utf-8">
+    <meta charset="utf-8">
+    <title>PoliSonic - Calculadora de Sono Polifásico Everyman, Uberman, Dymaxion</title>
+    <meta name="description" content="Aprenda a calcular seus horários de cochilos e sonecas. Faça seu cálculo de Sono Polifásico. Saiba mais sobre padrões de sono saudáveis e fases do sono." />
+    <meta name="keywords" content="padrão de sono, fases do sono, calculadora, polifásico, cochilo, soneca, sono polifásico, padrão natural." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -23,84 +25,90 @@
                 <div class="stroke">
                     <div class="title">
                         <h1>PoliSonic</h1>
-                        <h2>Horário Polifásico</h2>
+                        <h2>Calcule o horário do seu sono polifásico</h2>
                     </div>
                 </div><!-- stroke -->
-                <div id="calculadora" class="container">
-                    <br>
-                    <div id="horarios" class="span6 offset1">
-                        <div class="row-fluid">
-                            <div class="span6">
-                                <label for="tipoCochilo">Tipo</label>
-                                <select name="tipoCochilo"  id="tipoCochilo">
-                                    <option value="Everyman" selected>Everyman</option>
-                                    <option value="Uberman">Uberman</option>
-                                    <option value="Dymaxion">Dymaxion</option>
-                                </select>
-                            </div><!-- span6 -->
-                            <div class="span6">
-                                <label for="tempoCochilo">Tempo do Cochilo (Minutos)</label>
-                                <select name="tempoCochilo"  id="tempoCochilo">
-                                    <option value="20" selected>20</option>
-                                    <option value="30">30</option>
-                                </select>
-                            </div><!-- span6 -->
-                        </div><!-- row-fluid -->
-                        <label for="hora">Começa em:</label>
-                        <div class="row-fluid">
-                          <div class="span4">
-                            <label for="hora">Hora:</label>
-                            <select name="hora"  id="hora">
-                                <option value="1">01</option>
-                                <option value="2">02</option>
-                                <option value="3">03</option>
-                                <option value="4">04</option>
-                                <option value="5">05</option>
-                                <option value="6">06</option>
-                                <option value="7">07</option>
-                                <option value="8">08</option>
-                                <option value="9">09</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                                <option value="13">13</option>
-                                <option value="14">14</option>
-                                <option value="15">15</option>
-                                <option value="16">16</option>
-                                <option value="17">17</option>
-                                <option value="18">18</option>
-                                <option value="19">19</option>
-                                <option value="20">20</option>
-                                <option value="21">21</option>
-                                <option value="22">22</option>
-                                <option value="23">23</option>
-                                <option value="00" selected>00</option>
-                            </select>
-                          </div><!-- span7 -->
-                          <div class="span3 offset2">
-                            <label for="minutos">Minutos:</label>
-                            <select name="minutos"  id="minutos">
-                                <option value="00" selected>00</option>
-                                <option value="15">15</option>
-                                <option value="30">30</option>
-                                <option value="45">45</option>
-                            </select>
-                          </div><!-- span3 -->
-                        </div><!-- row-fluid -->
-                        <br>
-                        <div class="row-fluid">
-                            <button id="calcular" class="btn btn-primary">Calcular</button>
-                        </div>
-                        <br>
-                    </div><!-- horarios -->
-                </div><!-- calculadora -->
+                
                 <div class="scene">
                     <div class="smoke pulse"></div>
                 </div>
             </div>
         </div>
     </header>
-
+    <div id="calculadora" class="container">
+        <br>
+        <div id="horarios" class="span6 offset1">
+            <div class="row-fluid">
+                <div class="span6">
+                    <label for="tipoCochilo">Tipo</label>
+                    <select name="tipoCochilo"  id="tipoCochilo">
+                        <option value="Everyman" selected>Everyman</option>
+                        <option value="Uberman">Uberman</option>
+                        <option value="Dymaxion">Dymaxion</option>
+                    </select>
+                </div><!-- span6 -->
+                <div class="span6">
+                    <label for="tempoCochilo">Tempo do Cochilo (Minutos)</label>
+                    <select name="tempoCochilo"  id="tempoCochilo">
+                        <option value="20" selected>20</option>
+                        <option value="30">30</option>
+                    </select>
+                </div><!-- span6 -->
+            </div><!-- row-fluid -->
+            <label for="hora">Começa em:</label>
+            <div class="row-fluid">
+              <div class="span4">
+                <label for="hora">Hora:</label>
+                <select name="hora"  id="hora">
+                    <option value="1">01</option>
+                    <option value="2">02</option>
+                    <option value="3">03</option>
+                    <option value="4">04</option>
+                    <option value="5">05</option>
+                    <option value="6">06</option>
+                    <option value="7">07</option>
+                    <option value="8">08</option>
+                    <option value="9">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="00" selected>00</option>
+                </select>
+              </div><!-- span7 -->
+              <div class="span3 offset2">
+                <label for="minutos">Minutos:</label>
+                <select name="minutos"  id="minutos">
+                    <option value="00" selected>00</option>
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                    <option value="45">45</option>
+                </select>
+              </div><!-- span3 -->
+            </div><!-- row-fluid -->
+            <div class="row-fluid">
+                <button id="calcular" class="btn btn-primary">Calcular</button>
+                <button id="limpar" class="btn btn-danger">Limpar</button>
+            </div>
+            <br>
+        </div><!-- horarios -->
+    </div><!-- calculadora -->
+    <footer class="row-fluid">
+        <!-- <div class="span10 offset1"> -->
+            <p class="pull-left"><a href="http://pt.wikipedia.org/wiki/Sono_polif%C3%A1sico" target="_blank">Saiba Mais</a> sobre Sono Polifásico.</p>
+            <p class="pull-right">Gustavo Souza é desenvolvedor na <a href="http://agenciax4.com.br" alt="Site Agência X4" title="Site Agência X4">Agência X4</a> e escreve no blog <a href="http://tech4noobs.agenciax4.com.br" alt="Site Tech4Noobs" title="Site Tech4Noobs">Tech4Noobs</a>.</p>
+        <!-- </div> -->
+    </footer>
 
     <!-- Javascript -->
     <script src="js/jquery.min.js"></script>
