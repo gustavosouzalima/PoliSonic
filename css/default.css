@@ -312,11 +312,20 @@ header.content .stroke .title h2 { font-size: 1em }
     header.home .trees-front .scene { background: url(../img/craftsman.png) 60% bottom no-repeat,url(../img/type.png) 10px bottom no-repeat,url(../img/workbench.png) 88% bottom no-repeat; }
     header.home .trees-front .scene .smoke { display: none }
 }
-
-@media (max-width:980px) {
-    .row-fluid .offset2 {
-        margin-left: 40%;
+@media (max-width:800px) {
+    .row-fluid {
+        width: 175.619%;
     }
+    .row-fluid .span6 {
+        margin-left: 6%;
+        width: 45%;
+    }
+    #horarios{
+        margin-left: 30px;
+    }
+}
+@media (min-width:768px) {
+    header.home { height: 800px; }
 }
 @media (min-width:360px) and (max-width: 640px) {
     header.home { height: 740px; }
@@ -325,6 +334,9 @@ header.content .stroke .title h2 { font-size: 1em }
     }
 }
 @media (min-width:300px) and (max-width: 480px) {
+    .row-fluid .span6 {
+        margin-left: 0;
+    }
     header.home .trees-back {
         width: 100%;
         height: 100%;
@@ -348,6 +360,7 @@ header.content .stroke .title h2 { font-size: 1em }
     .row-fluid .offset2 {
         margin-left: 0;
     }
+    header.home { height: 1000px; }
 }
 @media
 screen and (-webkit-min-device-pixel-ratio:0) and (max-height:700px),
