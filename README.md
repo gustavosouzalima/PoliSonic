@@ -21,6 +21,11 @@ Para rodar o PoliSonic você precisará de:
 Changelog
 -----------
 
+**v 1.0.1**:
+
+- Abrange também padrões de sono Uberman e Dymaxion.
+- Novo Layout.
+
 **v 1.0**:
 
 - Calcula os horários para cochilo.
@@ -31,7 +36,7 @@ Changelog
 TODOLIST
 -----------
 
-- Abrangir demais padrões de sono.
+- Integração com Google Calendar.
 - Mostrar tempo de sono dormido.
 - Despertador.
 

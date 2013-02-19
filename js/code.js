@@ -1,99 +1,306 @@
 $("#calcular").click(function(){
-	var m_hora = parseInt($('#hora :selected').text()),
-		m_core = parseInt($('#minutos :selected').text()),
-		tempoCochilo = parseInt($('#tempoCochilo :selected').text()),
-		soneca = calcula(m_hora,m_core,tempoCochilo);
+	var h_inicial = parseInt($('#hora :selected').text()),
+		m_inicial = parseInt($('#minutos :selected').text()),
+		tipoCochilo = $('#tipoCochilo :selected').text(),
+		m_tempoCochilo = parseInt($('#tempoCochilo :selected').text()),
+		soneca = "";
 
 	$("table").remove();
-	$("#calculadora").append('<table class="table table-striped span6 offset1"><thead><tr><th>Soneca</th><th>Dorme</th><th>Acorda</th></tr></thead><tbody><tr><td>CoreSleep</td><td>'+soneca["dormeCore"]+'</td><td>'+soneca["acordaCore"]+'</td></tr><tr><td>1ª Cochilo</td><td>'+soneca["dormePrimeiroCochilo"]+'</td><td>'+soneca["acordaPrimeiroCochilo"]+'</td></tr><td>2ª Cochilo</td><td>'+soneca["dormeSegundoCochilo"]+'</td><td>'+soneca["acordaSegundoCochilo"]+'</td></tr><td>3ª Cochilo</td><td>'+soneca["dormeTerceiroCochilo"]+'</td><td>'+soneca["acordaTerceiroCochilo"]+'</td></tr></tbody></table>');
+	$("small").remove();
+	
+	if(tipoCochilo === "Everyman") {
+		calculaEveryman(h_inicial,m_inicial,m_tempoCochilo);
+	}else if(tipoCochilo === "Uberman") {
+		soneca = calculaUberman(h_inicial,m_inicial,m_tempoCochilo);
+	}else if(tipoCochilo === "Dymaxion") {
+		soneca = calculaDymaxion(h_inicial,m_inicial,m_tempoCochilo);
+	}
+
 });
 
-function calcula(m_hora,m_core,tempoCochilo){
 
-	var	tempoCore = m_hora + 3;
-	if(tempoCore >=24){
-		tempoCore = tempoCore - 24;
-	}
-	var dormeCore = formataHora(m_hora) + ":" + formataMinutos(m_core),
-		acordaCore = formataHora(tempoCore) + ":" + formataMinutos(m_core);
+function calculaEveryman(h_inicial,m_inicial,m_tempoCochilo){
+	var h_intervalo_soneca = 5;
 
-	for (var i=1;i<=3;i++)	{ 
+	for (var i=1;i<=4;i++)	{ 
 		switch (i){
 			case 1:
-				var	h_anterior = tempoCore,
-					h_atual = h_anterior + 5,
-					m_anterior = m_core,
-					primeiroCochilo = calculaCochilo(h_atual,h_anterior,m_anterior,tempoCochilo),
+				m_tempoCochiloCore = 180;
+				var	h_dormir = h_inicial,
+					m_dormir = m_inicial,
+					coreSleep = calculaCochilo(h_dormir,m_dormir,m_tempoCochiloCore),
+					dormeCore = coreSleep["cochiloDorme"],
+					acordaCore = coreSleep["cochiloAcorda"];
+			  break;
+			case 2:
+				var	h_dormir = coreSleep["h_acordar"] + h_intervalo_soneca,
+					m_dormir = coreSleep["m_acordar"],
+					primeiroCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
 					dormePrimeiroCochilo = primeiroCochilo["cochiloDorme"],
 					acordaPrimeiroCochilo = primeiroCochilo["cochiloAcorda"];
 			  break;
-			case 2:
-				var	h_anterior = primeiroCochilo["h_atual"],
-					h_atual = h_anterior + 5,
-					m_anterior = primeiroCochilo["m_atual"],
-					segundoCochilo = calculaCochilo(h_atual,h_anterior,m_anterior,tempoCochilo),
+			case 3:
+				var	h_dormir = primeiroCochilo["h_acordar"] + h_intervalo_soneca,
+					m_dormir = primeiroCochilo["m_acordar"],
+					segundoCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
 					dormeSegundoCochilo = segundoCochilo["cochiloDorme"],
 					acordaSegundoCochilo = segundoCochilo["cochiloAcorda"];
 			  break;
-			case 3:
-				var	h_anterior = segundoCochilo["h_atual"],
-					h_atual = h_anterior + 5,
-					m_anterior = segundoCochilo["m_atual"],
-					terceiroCochilo = calculaCochilo(h_atual,h_anterior,m_anterior,tempoCochilo),
+			case 4:
+				var	h_dormir = segundoCochilo["h_acordar"] + h_intervalo_soneca,
+					m_dormir = segundoCochilo["m_acordar"],
+					terceiroCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
 					dormeTerceiroCochilo = terceiroCochilo["cochiloDorme"],
 					acordaTerceiroCochilo = terceiroCochilo["cochiloAcorda"];
 			  break;
 		}
 	}
-
-	return {
-		"dormeCore":dormeCore,
-		"acordaCore":acordaCore,
-		"dormePrimeiroCochilo":dormePrimeiroCochilo,
-		"acordaPrimeiroCochilo":acordaPrimeiroCochilo,
-		"dormeSegundoCochilo":dormeSegundoCochilo,
-		"acordaSegundoCochilo":acordaSegundoCochilo,
-		"dormeTerceiroCochilo":dormeTerceiroCochilo,
-		"acordaTerceiroCochilo":acordaTerceiroCochilo,
-	}
+	$("#horarios").append("<small>*O primeiro cochilo do Everyman é o CoreSleep</small>");
+	$("#calculadora").append('\
+		<table class="table table-striped span6 offset1">\
+			<thead>\
+				<tr>\
+					<th>Soneca</th>\
+					<th>Dorme</th>\
+					<th>Acorda</th>\
+				</tr>\
+			</thead>\
+			<tbody>\
+				<tr>\
+					<td>CoreSleep</td>\
+					<td>'+dormeCore+'</td>\
+					<td>'+acordaCore+'</td>\
+				</tr>\
+				<tr>\
+					<td>1ª Cochilo</td>\
+					<td>'+dormePrimeiroCochilo+'</td>\
+					<td>'+acordaPrimeiroCochilo+'</td>\
+				</tr>\
+				<tr>\
+					<td>2ª Cochilo</td>\
+					<td>'+dormeSegundoCochilo+'</td>\
+					<td>'+acordaSegundoCochilo+'</td>\
+				</tr>\
+				<tr>\
+					<td>3ª Cochilo</td>\
+					<td>'+dormeTerceiroCochilo+'</td>\
+					<td>'+acordaTerceiroCochilo+'</td>\
+				</tr>\
+			</tbody>\
+		</table>');
 }
 
-function calculaCochilo(h_atual,h_anterior,m_anterior,tempoCochilo){
 
-	var	m_atual = 0,
-		cochiloDorme = formataHora(h_atual) + ":" + formataMinutos(m_anterior);
+function calculaUberman(h_inicial,m_inicial,m_tempoCochilo){
+	var h_intervalo_soneca = 4;
 
-	if(tempoCochilo === 20){
-		if(m_anterior === 40){
-			h_atual += 1;
-		}else if(m_anterior === 45){
-			m_atual = 5;
-			h_atual += 1;
-		}else if(m_anterior === 50){
-			m_atual = 10;
-			h_atual += 1;
-		}else if(m_anterior === 55){
-			m_atual = 15;
-			h_atual += 1;
-		}else {
-			m_atual = m_anterior+tempoCochilo;
-		}
-	}else if (tempoCochilo === 30){
-		if(m_anterior === 30){
-			m_atual = 0;
-			h_atual += 1;
-		}else if(m_anterior === 45){
-			m_atual = 15;
-			h_atual += 1;
-		}else {
-			m_atual = m_anterior+tempoCochilo;
+	for (var i=1;i<=6;i++)	{ 
+		switch (i){
+			case 1:
+				var	h_dormir = h_inicial,
+					m_dormir = m_inicial,
+					primeiroCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
+					dormePrimeiroCochilo = primeiroCochilo["cochiloDorme"],
+					acordaPrimeiroCochilo = primeiroCochilo["cochiloAcorda"];
+			  break;
+			case 2:
+				var	h_dormir = primeiroCochilo["h_acordar"] + h_intervalo_soneca,
+					m_dormir = primeiroCochilo["m_acordar"],
+					segundoCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
+					dormeSegundoCochilo = segundoCochilo["cochiloDorme"],
+					acordaSegundoCochilo = segundoCochilo["cochiloAcorda"];
+			  break;
+			case 3:
+				var	h_dormir = segundoCochilo["h_acordar"] + h_intervalo_soneca,
+					m_dormir = segundoCochilo["m_acordar"],
+					terceiroCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
+					dormeTerceiroCochilo = terceiroCochilo["cochiloDorme"],
+					acordaTerceiroCochilo = terceiroCochilo["cochiloAcorda"];
+			  break;
+			case 4:
+				var	h_dormir = terceiroCochilo["h_acordar"] + h_intervalo_soneca,
+					m_dormir = terceiroCochilo["m_acordar"],
+					quartoCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
+					dormeQuartoCochilo = quartoCochilo["cochiloDorme"],
+					acordaQuartoCochilo = quartoCochilo["cochiloAcorda"];
+			  break;
+			case 5:
+				var	h_dormir = quartoCochilo["h_acordar"] + h_intervalo_soneca,
+					m_dormir = quartoCochilo["m_acordar"],
+					quintoCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
+					dormeQuintoCochilo = quintoCochilo["cochiloDorme"],
+					acordaQuintoCochilo = quintoCochilo["cochiloAcorda"];
+			  break;
+			case 6:
+				var	h_dormir = quintoCochilo["h_acordar"] + h_intervalo_soneca,
+					m_dormir = quintoCochilo["m_acordar"],
+					sextoCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
+					dormeSextoCochilo = sextoCochilo["cochiloDorme"],
+					acordaSextoCochilo = sextoCochilo["cochiloAcorda"];
+			  break;
 		}
 	}
-	var	cochiloAcorda = formataHora(h_atual) + ":" + formataMinutos(m_atual);
+
+	$("#calculadora").append('\
+		<table class="table table-striped span6 offset1">\
+			<thead>\
+				<tr>\
+					<th>Soneca</th>\
+					<th>Dorme</th>\
+					<th>Acorda</th>\
+				</tr>\
+			</thead>\
+			<tbody>\
+				<tr>\
+					<td>1ª Cochilo</td>\
+					<td>'+dormePrimeiroCochilo+'</td>\
+					<td>'+acordaPrimeiroCochilo+'</td>\
+				</tr>\
+				<tr>\
+					<td>2ª Cochilo</td>\
+					<td>'+dormeSegundoCochilo+'</td>\
+					<td>'+acordaSegundoCochilo+'</td>\
+				</tr>\
+				<tr>\
+					<td>3ª Cochilo</td>\
+					<td>'+dormeTerceiroCochilo+'</td>\
+					<td>'+acordaTerceiroCochilo+'</td>\
+				</tr>\
+				<tr>\
+					<td>4ª Cochilo</td>\
+					<td>'+dormeQuartoCochilo+'</td>\
+					<td>'+acordaQuartoCochilo+'</td>\
+				</tr>\
+				<tr>\
+					<td>5ª Cochilo</td>\
+					<td>'+dormeQuintoCochilo+'</td>\
+					<td>'+acordaQuintoCochilo+'</td>\
+				</tr>\
+				<tr>\
+					<td>6ª Cochilo</td>\
+					<td>'+dormeSextoCochilo+'</td>\
+					<td>'+acordaSextoCochilo+'</td>\
+				</tr>\
+			</tbody>\
+		</table>');
+}
+
+
+function calculaDymaxion(h_inicial,m_inicial,m_tempoCochilo){
+	var h_intervalo_soneca = 6;
+
+	for (var i=1;i<=4;i++)	{ 
+		switch (i){
+			case 1:
+				var	h_dormir = h_inicial,
+					m_dormir = m_inicial,
+					primeiroCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
+					dormePrimeiroCochilo = primeiroCochilo["cochiloDorme"],
+					acordaPrimeiroCochilo = primeiroCochilo["cochiloAcorda"];
+			  break;
+			case 2:
+				var	h_dormir = primeiroCochilo["h_acordar"] + h_intervalo_soneca,
+					m_dormir = primeiroCochilo["m_acordar"],
+					segundoCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
+					dormeSegundoCochilo = segundoCochilo["cochiloDorme"],
+					acordaSegundoCochilo = segundoCochilo["cochiloAcorda"];
+			  break;
+			case 3:
+				var	h_dormir = segundoCochilo["h_acordar"] + h_intervalo_soneca,
+					m_dormir = segundoCochilo["m_acordar"],
+					terceiroCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
+					dormeTerceiroCochilo = terceiroCochilo["cochiloDorme"],
+					acordaTerceiroCochilo = terceiroCochilo["cochiloAcorda"];
+			  break;
+			case 4:
+				var	h_dormir = terceiroCochilo["h_acordar"] + h_intervalo_soneca,
+					m_dormir = terceiroCochilo["m_acordar"],
+					quartoCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
+					dormeQuartoCochilo = quartoCochilo["cochiloDorme"],
+					acordaQuartoCochilo = quartoCochilo["cochiloAcorda"];
+			  break;
+		}
+	}
+
+	$("#calculadora").append('\
+		<table class="table table-striped span6 offset1">\
+			<thead>\
+				<tr>\
+					<th>Soneca</th>\
+					<th>Dorme</th>\
+					<th>Acorda</th>\
+				</tr>\
+			</thead>\
+			<tbody>\
+				<tr>\
+					<td>1ª Cochilo</td>\
+					<td>'+dormePrimeiroCochilo+'</td>\
+					<td>'+acordaPrimeiroCochilo+'</td>\
+				</tr>\
+				<tr>\
+					<td>2ª Cochilo</td>\
+					<td>'+dormeSegundoCochilo+'</td>\
+					<td>'+acordaSegundoCochilo+'</td>\
+				</tr>\
+				<tr>\
+					<td>3ª Cochilo</td>\
+					<td>'+dormeTerceiroCochilo+'</td>\
+					<td>'+acordaTerceiroCochilo+'</td>\
+				</tr>\
+				<tr>\
+					<td>4ª Cochilo</td>\
+					<td>'+dormeQuartoCochilo+'</td>\
+					<td>'+acordaQuartoCochilo+'</td>\
+				</tr>\
+			</tbody>\
+		</table>');
+}
+
+
+function calculaCochilo(h_dormir,m_dormir,m_tempoCochilo){
+
+	var	m_acordar = 0,
+		h_acordar = 0,
+		cochiloDorme,
+		cochiloAcorda;
+
+	if (m_tempoCochilo === 180){
+		h_acordar = h_dormir + 3;
+	}else if(m_tempoCochilo === 20){
+		if(m_dormir === 40){
+			h_acordar = h_dormir + 1;
+		}else if(m_dormir === 45){
+			m_acordar = 5;
+			h_acordar = h_dormir + 1;
+		}else if(m_dormir === 50){
+			m_acordar = 10;
+			h_acordar = h_dormir + 1;
+		}else if(m_dormir === 55){
+			m_acordar = 15;
+			h_acordar = h_dormir + 1;
+		}else {
+			m_acordar = m_dormir+m_tempoCochilo;
+			h_acordar = h_dormir;
+		}
+	}else if (m_tempoCochilo === 30){
+		if(m_dormir === 30){
+			m_acordar = 0;
+			h_acordar = h_dormir + 1;
+		}else if(m_dormir === 45){
+			m_acordar = 15;
+			h_acordar = h_dormir + 1;
+		}else {
+			m_acordar = m_dormir+m_tempoCochilo;
+			h_acordar = h_dormir;
+		}
+	}
+
+	cochiloDorme = formataHora(h_dormir) + ":" + formataMinutos(m_dormir);
+	cochiloAcorda = formataHora(h_acordar) + ":" + formataMinutos(m_acordar);
 
 	return {
-		"h_atual":h_atual,
-		"m_atual":m_atual,
+		"h_acordar":h_acordar,
+		"m_acordar":m_acordar,
 		"cochiloAcorda":cochiloAcorda,
 		"cochiloDorme":cochiloDorme
 	} 
