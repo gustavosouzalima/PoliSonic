@@ -1,11 +1,11 @@
-$("select#tipoCochilo").change(function(){
-	var tipoCochilo = $(this).val();
+$("select#metodoCochilo").change(function(){
+	var metodoCochilo = $(this).val();
 
-	if(tipoCochilo === "Everyman") {
+	if(metodoCochilo === "Everyman") {
 		$("select#tempoCochilo").html('<option value="20" selected>20</option><option value="30">30</option>')
-	}else if(tipoCochilo === "Uberman") {
+	}else if(metodoCochilo === "Uberman") {
 		$("select#tempoCochilo").html('<option value="20" selected>20</option>')
-	}else if(tipoCochilo === "Dymaxion") {
+	}else if(metodoCochilo === "Dymaxion") {
 		$("select#tempoCochilo").html('<option value="30" selected>30</option>')
 	}
 });
@@ -13,26 +13,43 @@ $("select#tipoCochilo").change(function(){
 $("#calcular").click(function(){
 	var h_inicial = parseInt($('#hora :selected').val()),
 		m_inicial = parseInt($('#minutos :selected').val()),
-		tipoCochilo = $('#tipoCochilo :selected').val(),
+		metodoCochilo = $('#metodoCochilo :selected').val(),
 		m_tempoCochilo = parseInt($('#tempoCochilo :selected').val()),
 		soneca = "";
 
 	$("table").remove();
 	$("small").remove();
 	
-	if(tipoCochilo === "Everyman") {
+	if(metodoCochilo === "Everyman") {
 		calculaEveryman(h_inicial,m_inicial,m_tempoCochilo);
-	}else if(tipoCochilo === "Uberman") {
+	}else if(metodoCochilo === "Uberman") {
 		soneca = calculaUberman(h_inicial,m_inicial,m_tempoCochilo);
-	}else if(tipoCochilo === "Dymaxion") {
+	}else if(metodoCochilo === "Dymaxion") {
 		soneca = calculaDymaxion(h_inicial,m_inicial,m_tempoCochilo);
 	}
-
 });
 
 $("#limpar").click(function(){
 	$("table").remove();
 	$("small").remove();
+});
+
+$("#a_calculadora").click(function(){
+	$("#compartilhe").hide(1000);
+	$("#sobre").hide(1000);
+	$("#horarios").show(1000);
+});
+
+$("#a_sobre").click(function(){
+	$("#compartilhe").hide(1000);
+	$("#horarios").hide(1000);
+	$("#sobre").show(1000);
+});
+
+$("#a_compartilhe").click(function(){
+	$("#horarios").hide(1000);
+	$("#sobre").hide(1000);
+	$("#compartilhe").show(1000);
 });
 
 
