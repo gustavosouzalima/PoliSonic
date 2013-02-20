@@ -35,18 +35,24 @@ $("#limpar").click(function(){
 });
 
 $("#a_calculadora").click(function(){
+	$("table").remove();
+	$("small").remove();	
 	$("#compartilhe").hide(1000);
 	$("#sobre").hide(1000);
 	$("#horarios").show(1000);
 });
 
 $("#a_sobre").click(function(){
+	$("table").remove();
+	$("small").remove();	
 	$("#compartilhe").hide(1000);
 	$("#horarios").hide(1000);
 	$("#sobre").show(1000);
 });
 
 $("#a_compartilhe").click(function(){
+	$("table").remove();
+	$("small").remove();	
 	$("#horarios").hide(1000);
 	$("#sobre").hide(1000);
 	$("#compartilhe").show(1000);
