@@ -1,18 +1,18 @@
-html{
-    font-family:Helvetica,Arial Tahoma;
-    font-size:62.5%;
-    line-height:16px;
-    font-weight:300;
-}
 body{
+    font-family:Helvetica,Arial Tahoma;
     background:#000;
-    font-size:1.8em;
-    line-height:1.4em;
+    font-size:10px;
+    line-height:16px;
     color:#333022;
     margin:0;
     padding:0;
     position:relative;
 }
+
+ul li {
+ list-style: none;
+}
+
 *{
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
@@ -148,6 +148,7 @@ header.content {
     position: relative;
     overflow: hidden;
     background: #beecd9 url(../img/bg.png) center bottom repeat-x;
+    translate3d:(0,0,0); /*forcar renderizacar por GPU*/
     -webkit-transition: width 1s ease,height 1s ease;
     -moz-transition: width 1s ease,height 1s ease;
     -o-transition: width 1s ease,height 1s ease;
@@ -195,6 +196,7 @@ header.content .trees-front .scene .smoke {
     z-index: 4;
 }
 .sleep{
+    translate3d:(0,0,0); /*forcar renderizacar por GPU*/
     -webkit-animation: sleep 8s ease-out;
     -moz-animation: sleep 8s ease-out;
     -o-animation: sleep 8s ease-out;
@@ -205,6 +207,7 @@ header.content .trees-front .scene .smoke {
 .pulse,
 header.home .trees-front .scene .pulse,
 header.content .trees-front .scene .pulse {
+    translate3d:(0,0,0); /*forcar renderizacar por GPU*/
     -webkit-animation: pulsate 8s ease-out;
     -moz-animation: pulsate 8s ease-out;
     -o-animation: pulsate 8s ease-out;
@@ -214,7 +217,7 @@ header.content .trees-front .scene .pulse {
 }
 header.home .tree-left,
 header.content .tree-left {
-    background: url(../img/tree-left.png) right top no-repeat,url(../img/dormir_saco.png) 10% 81% no-repeat;
+    background: url(../img/tree-left.png) right top no-repeat,url(../img/dormir_saco.png) 13% 75% no-repeat;
     position: absolute;
     left: 0;
     width: 35%;
@@ -265,7 +268,7 @@ header.content .stroke .title h1 {
     color: #fff;
     padding: 20px;
     line-height: 46px;
-    font-size: 38px;
+    font-size: 3.8em;
     text-shadow: 0px 1px 1px rgba(1,71,58,0.5);
     font-weight: bold;
 }
@@ -274,7 +277,7 @@ header.content .stroke .title h2 {
     padding: 0 70px;
     text-align: center;
     line-height: 20px;
-    font-size: 20px;
+    font-size: 2em;
     text-shadow: 0px 1px 1px rgba(0,0,0,0.1);
     position: relative;
     bottom: 16px;
@@ -376,10 +379,10 @@ screen and (        min-device-pixel-ratio:0) and (max-height:700px)
     /*header.home { height: 700px }*/
     /*header.home .trees-back { zoom: 80%; }*/
     header.home .stroke .title h1{
-        font-size: 30px;
+        font-size: 3em;
     }
     header.home .stroke .title h2 {
-        font-size: 20px;
+        font-size: 2em;
         line-height: 20px;
     }
     header.home .stroke .title .logo img {
@@ -393,7 +396,7 @@ screen and (        min-device-pixel-ratio:0) and (max-height:700px)
 }
 
 #calculadora {
-    font-size: 0.8em;
+    font-size: 1.4em;
     background: rgba(165, 224, 247, 0.59);
     position: absolute;
     top: 145px;
@@ -408,7 +411,7 @@ screen and (        min-device-pixel-ratio:0) and (max-height:700px)
 }
 
 #calculadora select, #calculadora label {
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
 
 #calculadora .table th, .table td {
@@ -419,10 +422,14 @@ screen and (        min-device-pixel-ratio:0) and (max-height:700px)
     width: 88%;
 }
 
+#calculadora table td:nth-child(n) {
+    width: 26%;
+}
+
 footer p {
     margin-top: 20px;
     color: #fff;
-    font-size: 14px;
+    font-size: 1.4em;
     padding: 15px 20px 0 20px;
 }
 
@@ -431,33 +438,38 @@ footer p {
   MENU
 ========
 */
-ul#nav {
+#nav {
+    padding: 10px 0 0 10px;
+}
+
+#nav ul {
     margin: 10px 0 0 15px;
+    padding: 10px;
     margin-bottom: 0px;
     font-family: 'KulminoituvaRegular', helvetica, sans-serif;
 }
 
-ul#nav, ul#nav li {
+#nav ul, #nav ul li {
  margin: 0; padding: 0;
  overflow: hidden;
 }
 
-ul#nav li {
+#nav ul li {
  float: left;
  list-style: none;
  margin-right: 1em;
  padding: 10px 2px;
 }
 
-ul#nav li a {
- color: rgb(252, 188, 188);
+#nav ul li a {
+ color: rgb(89, 149, 255);
  text-decoration: none;
  float: left;
- font-size: 25px;
+ font-size: 2.5em;
  padding: 12px;
 }
 
-ul#nav li a:hover {
+#nav ul li a:hover {
  color: #7eb9be;
  text-decoration: none;
 }
@@ -472,6 +484,7 @@ ul#nav li a:hover {
 }
 
 .odd a:hover {
+    translate3d:(0,0,0); /*forcar renderizacar por GPU*/
     -webkit-transition:All .5s ease-in-out;
     -moz-transition:All .5s ease-in-out;
     -o-transition:All .5s ease-in-out;
@@ -481,6 +494,7 @@ ul#nav li a:hover {
 }
 
 .even a:hover {
+    translate3d:(0,0,0); /*forcar renderizacar por GPU*/
     -webkit-transition:All .5s ease-in-out;
     -moz-transition:All .5s ease-in-out;
     -o-transition:All .5s ease-in-out;
@@ -493,7 +507,7 @@ ul#nav li a:hover {
 .tt-wrapper{
     padding: 0;
     width: 320px;
-    height: 70px;
+    height: 85px;
     margin: 0 auto;
 }
 .tt-wrapper li{
@@ -502,7 +516,7 @@ ul#nav li a:hover {
 .tt-wrapper li a{
     display: block;
     width: 68px;
-    height: 70px;
+    height: 85px;
     margin: 0 2px;
     outline: none;
     position: relative;
@@ -538,7 +552,7 @@ ul#nav li a:hover {
     font-family: 'Alegreya SC', Georgia, serif;
     font-weight: 400;   
     font-style: italic;
-    font-size: 14px;
+    font-size: 1.1em;
     color: #719DAB;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -551,6 +565,7 @@ ul#nav li a:hover {
     bottom: -40px;
     opacity: 0;
     box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
+    translate3d:(0,0,0); /*forcar renderizacar por GPU*/
     -webkit-transform: scale(0.2);
     -moz-transform: scale(0.2);
     -o-transform: scale(0.2);
@@ -565,6 +580,7 @@ ul#nav li a:hover {
 .tt-wrapper li a:hover span{
     opacity: 0.9;
     bottom: 50px;
+    translate3d:(0,0,0); /*forcar renderizacar por GPU*/
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
     -o-transform: scale(1);

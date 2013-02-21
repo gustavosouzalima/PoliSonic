@@ -135,25 +135,25 @@ function calculaEveryman(h_inicial,m_inicial,m_tempoCochilo){
             </thead>\
             <tbody>\
                 <tr>\
-                    <td>1ª Cochilo(Core)</td>\
+                    <td>1º Cochilo(Core)</td>\
                     <td>'+dormePrimeiroCochilo+'</td>\
                     <td>'+acordaPrimeiroCochilo+'</td>\
                     <td id="agenda1Cochilo"></td>\
                 </tr>\
                 <tr>\
-                    <td>2ª Cochilo</td>\
+                    <td>2º Cochilo</td>\
                     <td>'+dormeSegundoCochilo+'</td>\
                     <td>'+acordaSegundoCochilo+'</td>\
                     <td id="agenda2Cochilo"></td>\
                 </tr>\
                 <tr>\
-                    <td>3ª Cochilo</td>\
+                    <td>3º Cochilo</td>\
                     <td>'+dormeTerceiroCochilo+'</td>\
                     <td>'+acordaTerceiroCochilo+'</td>\
                     <td id="agenda3Cochilo"></td>\
                 </tr>\
                 <tr>\
-                    <td>4ª Cochilo</td>\
+                    <td>4º Cochilo</td>\
                     <td>'+dormeQuartoCochilo+'</td>\
                     <td>'+acordaQuartoCochilo+'</td>\
                     <td id="agenda4Cochilo"></td>\
@@ -187,88 +187,145 @@ function calculaUberman(h_inicial,m_inicial,m_tempoCochilo){
                     primeiroCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
                     dormePrimeiroCochilo = primeiroCochilo["cochiloDorme"],
                     acordaPrimeiroCochilo = primeiroCochilo["cochiloAcorda"];
+                
+                horarios = {
+                    h_dormeCochilo1 : h_dormir,
+                    m_dormeCochilo1 : m_dormir,
+                    h_acordaCochilo1 : primeiroCochilo["h_acordar"],
+                    m_acordaCochilo1 : primeiroCochilo["m_acordar"]
+                }
               break;
+
             case 2:
                 var h_dormir = primeiroCochilo["h_acordar"] + h_intervalo_soneca,
                     m_dormir = primeiroCochilo["m_acordar"],
                     segundoCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
                     dormeSegundoCochilo = segundoCochilo["cochiloDorme"],
                     acordaSegundoCochilo = segundoCochilo["cochiloAcorda"];
+
+                horarios['h_dormeCochilo2'] =  h_dormir
+                horarios['m_dormeCochilo2'] =  m_dormir
+                horarios['h_acordaCochilo2'] =  segundoCochilo["h_acordar"]
+                horarios['m_acordaCochilo2'] =  segundoCochilo["m_acordar"]                    
               break;
+
             case 3:
                 var h_dormir = segundoCochilo["h_acordar"] + h_intervalo_soneca,
                     m_dormir = segundoCochilo["m_acordar"],
                     terceiroCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
                     dormeTerceiroCochilo = terceiroCochilo["cochiloDorme"],
                     acordaTerceiroCochilo = terceiroCochilo["cochiloAcorda"];
+
+                horarios['h_dormeCochilo3'] =  h_dormir
+                horarios['m_dormeCochilo3'] =  m_dormir
+                horarios['h_acordaCochilo3'] =  terceiroCochilo["h_acordar"]
+                horarios['m_acordaCochilo3'] =  terceiroCochilo["m_acordar"]                    
               break;
+
             case 4:
                 var h_dormir = terceiroCochilo["h_acordar"] + h_intervalo_soneca,
                     m_dormir = terceiroCochilo["m_acordar"],
                     quartoCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
                     dormeQuartoCochilo = quartoCochilo["cochiloDorme"],
                     acordaQuartoCochilo = quartoCochilo["cochiloAcorda"];
+
+                horarios['h_dormeCochilo4'] =  h_dormir
+                horarios['m_dormeCochilo4'] =  m_dormir
+                horarios['h_acordaCochilo4'] =  quartoCochilo["h_acordar"]
+                horarios['m_acordaCochilo4'] =  quartoCochilo["m_acordar"]                    
               break;
+
             case 5:
                 var h_dormir = quartoCochilo["h_acordar"] + h_intervalo_soneca,
                     m_dormir = quartoCochilo["m_acordar"],
                     quintoCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
                     dormeQuintoCochilo = quintoCochilo["cochiloDorme"],
                     acordaQuintoCochilo = quintoCochilo["cochiloAcorda"];
+
+                horarios['h_dormeCochilo5'] =  h_dormir
+                horarios['m_dormeCochilo5'] =  m_dormir
+                horarios['h_acordaCochilo5'] =  quintoCochilo["h_acordar"]
+                horarios['m_acordaCochilo5'] =  quintoCochilo["m_acordar"]                    
               break;
+
             case 6:
                 var h_dormir = quintoCochilo["h_acordar"] + h_intervalo_soneca,
                     m_dormir = quintoCochilo["m_acordar"],
                     sextoCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
                     dormeSextoCochilo = sextoCochilo["cochiloDorme"],
                     acordaSextoCochilo = sextoCochilo["cochiloAcorda"];
+
+                horarios['h_dormeCochilo6'] =  h_dormir
+                horarios['m_dormeCochilo6'] =  m_dormir
+                horarios['h_acordaCochilo6'] =  sextoCochilo["h_acordar"]
+                horarios['m_acordaCochilo6'] =  sextoCochilo["m_acordar"]                    
               break;
         }
     }
 
     $("#horarios").append("<small>*6 Cochilos de 20 minutos a cada 4 horas.</small>");
     $("#calculadora").append('\
-        <table class="table table-condensed span5 offset1">\
+        <table class="table table-condensed span6 offset1">\
             <thead>\
                 <tr>\
                     <th>Soneca</th>\
                     <th>Dorme</th>\
                     <th>Acorda</th>\
+                    <th>Agenda</th>\
                 </tr>\
             </thead>\
             <tbody>\
                 <tr>\
-                    <td>1ª Cochilo</td>\
+                    <td>1º Cochilo</td>\
                     <td>'+dormePrimeiroCochilo+'</td>\
                     <td>'+acordaPrimeiroCochilo+'</td>\
+                    <td id="agenda1Cochilo"></td>\
                 </tr>\
                 <tr>\
-                    <td>2ª Cochilo</td>\
+                    <td>2º Cochilo</td>\
                     <td>'+dormeSegundoCochilo+'</td>\
                     <td>'+acordaSegundoCochilo+'</td>\
+                    <td id="agenda2Cochilo"></td>\
                 </tr>\
                 <tr>\
-                    <td>3ª Cochilo</td>\
+                    <td>3º Cochilo</td>\
                     <td>'+dormeTerceiroCochilo+'</td>\
                     <td>'+acordaTerceiroCochilo+'</td>\
+                    <td id="agenda3Cochilo"></td>\
                 </tr>\
                 <tr>\
-                    <td>4ª Cochilo</td>\
+                    <td>4º Cochilo</td>\
                     <td>'+dormeQuartoCochilo+'</td>\
                     <td>'+acordaQuartoCochilo+'</td>\
+                    <td id="agenda4Cochilo"></td>\
                 </tr>\
                 <tr>\
-                    <td>5ª Cochilo</td>\
+                    <td>5º Cochilo</td>\
                     <td>'+dormeQuintoCochilo+'</td>\
                     <td>'+acordaQuintoCochilo+'</td>\
+                    <td id="agenda5Cochilo"></td>\
                 </tr>\
                 <tr>\
-                    <td>6ª Cochilo</td>\
+                    <td>6º Cochilo</td>\
                     <td>'+dormeSextoCochilo+'</td>\
                     <td>'+acordaSextoCochilo+'</td>\
+                    <td id="agenda6Cochilo"></td>\
                 </tr>\
             </tbody>\
         </table>');
+
+    // cria link para agenda
+    for (var cochilo=1;cochilo<=6;cochilo++)  {
+        adicionarAgenda(
+                        horarios["h_dormeCochilo"+cochilo],
+                        horarios["m_dormeCochilo"+cochilo],
+                        horarios["h_acordaCochilo"+cochilo],
+                        horarios["m_acordaCochilo"+cochilo],
+                        cochilo,
+                        "agenda"+cochilo+"Cochilo",
+                        "Uberman"
+                        );
+    }
 }
 
 
@@ -284,64 +341,108 @@ function calculaDymaxion(h_inicial,m_inicial,m_tempoCochilo){
                     primeiroCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
                     dormePrimeiroCochilo = primeiroCochilo["cochiloDorme"],
                     acordaPrimeiroCochilo = primeiroCochilo["cochiloAcorda"];
+
+                horarios = {
+                    h_dormeCochilo1 : h_dormir,
+                    m_dormeCochilo1 : m_dormir,
+                    h_acordaCochilo1 : primeiroCochilo["h_acordar"],
+                    m_acordaCochilo1 : primeiroCochilo["m_acordar"]
+                }                    
               break;
+
             case 2:
                 var h_dormir = primeiroCochilo["h_acordar"] + h_intervalo_soneca,
                     m_dormir = primeiroCochilo["m_acordar"] + 30,
                     segundoCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
                     dormeSegundoCochilo = segundoCochilo["cochiloDorme"],
                     acordaSegundoCochilo = segundoCochilo["cochiloAcorda"];
+
+                horarios['h_dormeCochilo2'] =  h_dormir
+                horarios['m_dormeCochilo2'] =  m_dormir
+                horarios['h_acordaCochilo2'] =  segundoCochilo["h_acordar"]
+                horarios['m_acordaCochilo2'] =  segundoCochilo["m_acordar"]  
               break;
+
             case 3:
                 var h_dormir = segundoCochilo["h_acordar"] + h_intervalo_soneca,
                     m_dormir = segundoCochilo["m_acordar"] + 30,
                     terceiroCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
                     dormeTerceiroCochilo = terceiroCochilo["cochiloDorme"],
                     acordaTerceiroCochilo = terceiroCochilo["cochiloAcorda"];
+
+                horarios['h_dormeCochilo3'] =  h_dormir
+                horarios['m_dormeCochilo3'] =  m_dormir
+                horarios['h_acordaCochilo3'] =  terceiroCochilo["h_acordar"]
+                horarios['m_acordaCochilo3'] =  terceiroCochilo["m_acordar"]  
               break;
+
             case 4:
                 var h_dormir = terceiroCochilo["h_acordar"] + h_intervalo_soneca,
                     m_dormir = terceiroCochilo["m_acordar"] + 30,
                     quartoCochilo = calculaCochilo(h_dormir,m_dormir,m_tempoCochilo),
                     dormeQuartoCochilo = quartoCochilo["cochiloDorme"],
                     acordaQuartoCochilo = quartoCochilo["cochiloAcorda"];
+
+                horarios['h_dormeCochilo4'] =  h_dormir
+                horarios['m_dormeCochilo4'] =  m_dormir
+                horarios['h_acordaCochilo4'] =  quartoCochilo["h_acordar"]
+                horarios['m_acordaCochilo4'] =  quartoCochilo["m_acordar"]  
               break;
+
         }
     }
 
     $("#horarios").append("<small>*4 Cochilos de 20 minutos a cada 5 horas e 30 minutos.</small>");
     $("#calculadora").append('\
-        <table class="table table-condensed span5 offset1">\
+        <table class="table table-condensed span6 offset1">\
             <thead>\
                 <tr>\
                     <th>Soneca</th>\
                     <th>Dorme</th>\
                     <th>Acorda</th>\
+                    <th>Agenda</th>\
                 </tr>\
             </thead>\
             <tbody>\
                 <tr>\
-                    <td>1ª Cochilo</td>\
+                    <td>1º Cochilo</td>\
                     <td>'+dormePrimeiroCochilo+'</td>\
                     <td>'+acordaPrimeiroCochilo+'</td>\
+                    <td id="agenda1Cochilo"></td>\
                 </tr>\
                 <tr>\
-                    <td>2ª Cochilo</td>\
+                    <td>2º Cochilo</td>\
                     <td>'+dormeSegundoCochilo+'</td>\
                     <td>'+acordaSegundoCochilo+'</td>\
+                    <td id="agenda2Cochilo"></td>\
                 </tr>\
                 <tr>\
-                    <td>3ª Cochilo</td>\
+                    <td>3º Cochilo</td>\
                     <td>'+dormeTerceiroCochilo+'</td>\
                     <td>'+acordaTerceiroCochilo+'</td>\
+                    <td id="agenda3Cochilo"></td>\
                 </tr>\
                 <tr>\
-                    <td>4ª Cochilo</td>\
+                    <td>4º Cochilo</td>\
                     <td>'+dormeQuartoCochilo+'</td>\
                     <td>'+acordaQuartoCochilo+'</td>\
+                    <td id="agenda4Cochilo"></td>\
                 </tr>\
             </tbody>\
         </table>');
+
+    // cria link para agenda
+    for (var cochilo=1;cochilo<=4;cochilo++)  {
+        adicionarAgenda(
+                        horarios["h_dormeCochilo"+cochilo],
+                        horarios["m_dormeCochilo"+cochilo],
+                        horarios["h_acordaCochilo"+cochilo],
+                        horarios["m_acordaCochilo"+cochilo],
+                        cochilo,
+                        "agenda"+cochilo+"Cochilo",
+                        "Dymaxion"
+                        );
+    }
 }
 
 
@@ -420,10 +521,10 @@ function adicionarAgenda(h_dormir,m_dormir,h_acordar,m_acordar,numeroCochilo,id,
 
     var data = new Date(),
         agendaCochilo = {
-        start: new Date(data.getFullYear(), 1, data.getDate(), h_dormir, m_dormir, 00),
-        end: new Date(data.getFullYear(), 1, data.getDate(), h_acordar, m_acordar, 00),
-        title: numeroCochilo+' do Sono Polifásico Método '+metodo,
-        description: 'Esse é o seu '+numeroCochilo+', se organize para dormir no horário.',
+        start: new Date(data.getFullYear(), data.getMonth(), data.getDate(), h_dormir, m_dormir, 00),
+        end: new Date(data.getFullYear(), data.getMonth(), data.getDate(), h_acordar, m_acordar, 00),
+        title: numeroCochilo+'º Cochilo do Sono Polifásico Método '+metodo,
+        description: 'Esse é o seu '+numeroCochilo+'º Cochilo, se organize para dormir no horário.',
         location: 'Na sua cama :D'};
     $('#'+id).icalendar(
         $.extend(
