@@ -415,6 +415,10 @@ screen and (        min-device-pixel-ratio:0) and (max-height:700px)
     background-color: rgba(255, 255, 255, 0.8);
 }
 
+#calculadora table {
+    width: 88%;
+}
+
 footer p {
     margin-top: 20px;
     color: #fff;
@@ -427,25 +431,25 @@ footer p {
   MENU
 ========
 */
-#nav {
+ul#nav {
     margin: 10px 0 0 15px;
     margin-bottom: 0px;
     font-family: 'KulminoituvaRegular', helvetica, sans-serif;
 }
 
-ul, li {
+ul#nav, ul#nav li {
  margin: 0; padding: 0;
  overflow: hidden;
 }
 
-ul li {
+ul#nav li {
  float: left;
  list-style: none;
  margin-right: 1em;
  padding: 10px 2px;
 }
 
-li a {
+ul#nav li a {
  color: rgb(252, 188, 188);
  text-decoration: none;
  float: left;
@@ -453,7 +457,7 @@ li a {
  padding: 12px;
 }
 
-li a:hover {
+ul#nav li a:hover {
  color: #7eb9be;
  text-decoration: none;
 }

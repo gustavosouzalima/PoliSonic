@@ -11,6 +11,7 @@
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="css/default.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/jquery.icalendar.css" media="screen">
   </head>
   <body>
     <a href="https://github.com/gustavox4ids/PoliSonic" target="_blank" class="navbar-fixed-top"><img style="-webkit-user-select: none; position: absolute; top: 0; right: 0; border: 0; z-index:9999;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" width="127" height="127"></a>
@@ -138,7 +139,22 @@
     </footer>
 
     <!-- Javascript -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/code.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/code.js"></script>
+    <script type="text/javascript" src="js/jquery.icalendar.js"></script>
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38655248-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
   </body>
 </html>
