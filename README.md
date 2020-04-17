@@ -2,8 +2,6 @@ PoliSonic
 ===========
 
 O **PoliSonic** pretende ser um facilitador na hora de calcular seus horários de cochilos no sono polifásico.
-
-Vejo o [Demo Online](http://polisonic.tk/ "Demo Online")
   
 Saiba mais sobre o SonoPolifásico [Wikipedia](http://pt.wikipedia.org/wiki/Sono_polif%C3%A1sico "Wikipedia")
 
@@ -50,7 +48,3 @@ Desenvolvido por:
 + Twitter: [@dodilei](http://twitter.com/dodilei "Twitter") | Facebook: [gustavo.w4lker](http://www.facebook.com/gustavo.w4lker/ "Facebook") | GitHub: [gustavox4ids](http://github.com/gustavox4ids)
 
 ---------------------------------------
-
-Licença
----------------------
-O PoliSonic está livre de licenças(Para quê você quer uma???)
