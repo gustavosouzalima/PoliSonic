@@ -1,0 +1,42 @@
+body {
+    background-color: #003791;
+}
+
+.container {
+    font-family: 'Comfortaa', cursive;
+}
+
+.name-project {
+    font-family: 'Girassol', cursive;
+}
+
+.title-primary {
+    color: white;
+    font-family: 'Girassol', cursive;
+    text-align: center
+}
+
+.title-primary h1 {
+    font-size: 100px;
+}
+
+.selection-sleep {
+    font-family: 'Comfortaa', cursive;
+    color: white;
+}
+
+.first {
+    text-align: center
+}
+
+.type-title {
+    font-family: 'Comfortaa', cursive;
+    padding-top: 5%;
+    color: white;
+}
+
+.type {
+    font-family: 'Comfortaa', cursive;
+    padding-top: 1%;
+    color: white;
+}
