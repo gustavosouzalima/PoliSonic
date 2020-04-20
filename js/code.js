@@ -130,7 +130,6 @@ function calculaEveryman(h_inicial, m_inicial, m_tempoCochilo) {
                     <th>Soneca</th>\
                     <th>Dorme</th>\
                     <th>Acorda</th>\
-                    <th>Agenda</th>\
                 </tr>\
             </thead>\
             <tbody>\
@@ -138,25 +137,21 @@ function calculaEveryman(h_inicial, m_inicial, m_tempoCochilo) {
                     <td>1º Cochilo(Core)</td>\
                     <td>' + dormePrimeiroCochilo + '</td>\
                     <td>' + acordaPrimeiroCochilo + '</td>\
-                    <td id="agenda1Cochilo"></td>\
                 </tr>\
                 <tr>\
                     <td>2º Cochilo</td>\
                     <td>' + dormeSegundoCochilo + '</td>\
                     <td>' + acordaSegundoCochilo + '</td>\
-                    <td id="agenda2Cochilo"></td>\
                 </tr>\
                 <tr>\
                     <td>3º Cochilo</td>\
                     <td>' + dormeTerceiroCochilo + '</td>\
                     <td>' + acordaTerceiroCochilo + '</td>\
-                    <td id="agenda3Cochilo"></td>\
                 </tr>\
                 <tr>\
                     <td>4º Cochilo</td>\
                     <td>' + dormeQuartoCochilo + '</td>\
                     <td>' + acordaQuartoCochilo + '</td>\
-                    <td id="agenda4Cochilo"></td>\
                 </tr>\
             </tbody>\
         </table>');
