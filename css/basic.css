@@ -1,5 +1,6 @@
 body {
     background-color: #003791;
+    overflow-x: hidden;
 }
 
 .container {
@@ -39,4 +40,12 @@ body {
     font-family: 'Comfortaa', cursive;
     padding-top: 1%;
     color: white;
+}
+
+.imagem-principal img {
+    max-width: 300px;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+    top: 300px;
 }
