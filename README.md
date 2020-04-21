@@ -16,4 +16,4 @@ See also the list of [contributors](https://github.com/SamuelTessaro/sono-polifa
 
 Feel free to edit or copy. If possible, contribute a pull request.
 
-We hope it helped you in your polyphasic sleep. For being something very specific, not much is found about.
+We hope it helped you in your polyphasic sleep, or even as an example of a programming project. For being something very specific, not much is found about.
