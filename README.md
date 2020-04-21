@@ -1,20 +1,19 @@
-PoliSonic
-===========
+# Polyphasic Sleep Calculator
 
-O **PoliSonic** pretende ser um facilitador na hora de calcular seus horários de cochilos no sono polifásico.
+Polyphasic Sleep Calculator is intended to be a facilitator when calculating your nap times in polyphasic sleep.
 
----------------------------------------
+## Built With
 
-Desenvolvido originalmente por:
--------
+* HTML, CSS, and JavaScript.
 
-**Dodilei**
+## Authors
 
-+ Twitter: [@dodilei](http://twitter.com/dodilei "Twitter") | Facebook: [gustavo.w4lker](http://www.facebook.com/gustavo.w4lker/ "Facebook") | GitHub: [gustavox4ids](http://github.com/gustavox4ids)
+* **Gustavo de Souza Lima Pereira** - *Initial work where the fork came from.*
+* **Samuel Tessaro** - *Creation of the new interface.*
+* **João Vitor Natali** - *Fixed some bugs.*
 
----------------------------------------
+See also the list of [contributors](https://github.com/SamuelTessaro/sono-polifasico/graphs/contributors) who participated in this project.
 
-Fork por:
--------
+Feel free to edit or copy. If possible, contribute a pull request.
 
-**Samuel Tessaro**
+We hope it helped you in your polyphasic sleep. For being something very specific, not much is found about.
